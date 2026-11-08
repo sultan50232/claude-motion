@@ -1,0 +1,52 @@
+/* Airplane-window explainer: 1080x1920 layout, 1rem = 10px. Arabic UI, RTL. */
+#app { font-family: 'Cairo', sans-serif; }
+.ov { position: absolute; inset: 0; pointer-events: none; direction: rtl; }
+
+.chip {
+  position: absolute; left: 50%; top: 21rem; transform: translate(-50%, 0);
+  max-width: 92rem; padding: 1.1rem 3.2rem 1.5rem; border-radius: 1.6rem;
+  background: rgba(10, 12, 16, 0.86); color: #fff;
+  font: 800 4.6rem/1.35 'Cairo', sans-serif; text-align: center; white-space: nowrap;
+  box-shadow: 0 0.6rem 2.4rem rgba(0, 0, 0, 0.35);
+}
+.chip b { color: #ffcf33; font-weight: 900; }
+
+.cap {
+  position: absolute; left: 4rem; right: 4rem; top: 118rem; text-align: center;
+  font: 900 9.6rem/1.25 'Cairo', sans-serif; color: #fff;
+  -webkit-text-stroke: 1.5rem #0b0d12; paint-order: stroke fill;
+  text-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.45);
+}
+.cap span { display: inline-block; margin: 0 1.4rem; }
+.cap span.on { color: #ffcf33; }
+
+.gauges {
+  position: absolute; left: 6rem; right: 6rem; top: 141rem;
+  display: flex; gap: 2.4rem; direction: rtl;
+}
+.g {
+  flex: 1; padding: 1.6rem 2.4rem 2rem; border-radius: 2rem;
+  background: rgba(10, 12, 16, 0.82); color: #fff;
+  font: 700 3.2rem/1.3 'Cairo', sans-serif;
+}
+.g .v { font: 900 5.4rem/1.2 'Cairo', sans-serif; direction: ltr; text-align: right; }
+.g .bar { height: 1.4rem; border-radius: 0.7rem; background: rgba(255, 255, 255, 0.14); margin-top: 1rem; overflow: hidden; direction: ltr; }
+.g .bar i { display: block; height: 100%; border-radius: 0.7rem; }
+.g.in .bar i { background: #ff7a3d; }
+.g.out .bar i { background: #5ab8ff; }
+.g.in .v { color: #ffb48a; }
+.g.out .v { color: #9fd6ff; }
+
+.alt {
+  position: absolute; right: 6rem; top: 33rem; padding: 1rem 2.4rem 1.3rem; border-radius: 1.6rem;
+  background: rgba(10, 12, 16, 0.78); color: #fff; font: 700 3rem/1.3 'Cairo', sans-serif;
+}
+.alt .v { font: 900 5rem/1.15 'Cairo', sans-serif; direction: ltr; text-align: right; }
+
+.lbl {
+  position: absolute; left: 0; top: 0; padding: 0.7rem 2rem 1rem; border-radius: 1.2rem;
+  background: rgba(10, 12, 16, 0.86); color: #fff; white-space: nowrap;
+  font: 800 3.4rem/1.3 'Cairo', sans-serif; border-right: 0.8rem solid var(--c, #ffcf33);
+}
+.lbl small { display: block; font: 600 2.6rem/1.3 'Cairo', sans-serif; color: rgba(255, 255, 255, 0.78); }
+svg.lines { position: absolute; inset: 0; width: 100%; height: 100%; }

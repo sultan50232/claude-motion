@@ -45,6 +45,7 @@ for (const name of names) {
     write: false,
     target: 'es2022',
     legalComments: 'none',
+    loader: {'.woff2': 'dataurl'},
     logLevel: 'warning',
   });
   const js = res.outputFiles[0].text.replace(/<\/script/g, '<\\/script');

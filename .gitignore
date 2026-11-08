@@ -7,3 +7,5 @@ __pycache__/
 .env
 drafts/
 sims/dist/
+public/scent-vo.wav
+public/scent-music-sfx.wav

@@ -26,6 +26,13 @@ const font = (weight) => {
 const inter = fs.readFileSync(path.join(ROOT, 'node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2')).toString('base64');
 const FONTS = [400, 600, 700].map(font).join('\n') +
   `\n@font-face{font-family:'Inter';font-weight:100 900;font-style:normal;font-display:block;src:url(data:font/woff2;base64,${inter}) format('woff2');}`;
+// Arabic (IBM Plex Sans Arabic, OFL) for sims with Arabic type, e.g. scent.
+const plexAr = (w) => {
+  const f = (sub) => fs.readFileSync(path.join(ROOT, `node_modules/@fontsource/ibm-plex-sans-arabic/files/ibm-plex-sans-arabic-${sub}-${w}-normal.woff2`)).toString('base64');
+  return `@font-face{font-family:'Plex Arabic';font-weight:${w};font-style:normal;font-display:block;src:url(data:font/woff2;base64,${f('arabic')}) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+200C-200E,U+FB50-FDFF,U+FE70-FEFC;}` +
+    `@font-face{font-family:'Plex Arabic';font-weight:${w};font-style:normal;font-display:block;src:url(data:font/woff2;base64,${f('latin')}) format('woff2');unicode-range:U+0000-00FF,U+2000-206F;}`;
+};
+const ARABIC = [400, 500, 600, 700].map(plexAr).join('\n');
 const KIT_CSS = fs.readFileSync(path.join(HERE, 'kit/style.css'), 'utf8');
 
 const names = process.argv.slice(2).length
@@ -49,14 +56,16 @@ for (const name of names) {
   });
   const js = res.outputFiles[0].text.replace(/<\/script/g, '<\\/script');
   const css = fs.existsSync(path.join(dir, 'style.css')) ? fs.readFileSync(path.join(dir, 'style.css'), 'utf8') : '';
+  const arabic = fs.existsSync(path.join(dir, 'arabic'));
   const html = `<!doctype html>
-<html lang="en">
+<html lang="${arabic ? 'ar' : 'en'}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>${name}</title>
 <style>
 ${FONTS}
+${arabic ? ARABIC : ''}
 ${KIT_CSS}
 ${css}
 </style>

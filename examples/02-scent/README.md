@@ -1,6 +1,8 @@
 # 02 · ليش بعض الروائح ترجع لك ذكريات من طفولتك؟
 
-59 s · 1080×1920 (9:16) · 30 fps · stereo, −14 LUFS · Arabic (Saudi dialect) voiceover + subtitles · source: [`sims/scent/`](../../sims/scent/)
+[▶ TikTok_Episode_01.mp4](TikTok_Episode_01.mp4) · 59 s · 1080×1920 (9:16) · 30 fps · stereo, −14 LUFS · Arabic (Saudi dialect) voiceover + subtitles · source: [`sims/scent/`](../../sims/scent/)
+
+![contact sheet](contact-sheet.png)
 
 The first episode of a TikTok science series: why a smell can bring back a childhood memory. A toy-style 3D young man smells a perfume, a childhood memory island appears, then the science: receptors in the nose → olfactory bulb → amygdala (emotion) and hippocampus (memory), and the caveat that not every smell brings a memory and memories are not exact.
 

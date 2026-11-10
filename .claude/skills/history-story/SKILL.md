@@ -44,11 +44,10 @@ The series' first episode is `PaperRoad` ("درب الورق", 46 s, 1080×1920,
 
 ## Voice-over
 
-This repo can't synthesise a professional voice; record it (human or a TTS service) and drop it in:
-
-- One WAV per line, `public/<name>/vo/01.wav, 02.wav, …` in `lines` order. The cue sheet places each at its line's `t`, ducks the music to 40 % under it, and warns if a take overruns its slot.
-- `examples/02-paper-road/voiceover.md` is the recording script with every slot's start and length; regenerate it for a new episode.
-- If the takes come back longer than the slots, retime `lines` (and the cuts and pose keys after them) in the JSON. Captions, gestures and ducking all follow, because they read the same file.
+- Quick guide voice: `npm run paper:vo` (`scripts/vo-google.py`, Google's Arabic voice via gTTS; the environment must allow `translate.google.com`). Give a line a `say` field when the spoken form differs from the caption, e.g. numbers in words: `"text": "عام ٧٥١م…", "say": "عامَ سبعِمئةٍ وواحدٍ وخمسين…"`.
+- Professional voice: record one WAV per line as `public/<name>/vo/01.wav, 02.wav, …` (any rate, 16/24-bit). `examples/02-paper-road/voiceover.md` is the recording script.
+- Then always `python3 scripts/retime.py <story.json> <vo dir>`: it lays the lines out to fit the takes and moves every cut, chip, pose key and scene beat with them. Never speed the voice up to fit the picture; stretch the picture to fit the voice.
+- The cue sheet places each take at its line's `t`, ducks the music under it, and warns if a take overruns its slot.
 
 ## Rules of thumb
 

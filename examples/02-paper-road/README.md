@@ -1,6 +1,6 @@
 # 02 · درب الورق (The Road of Paper)
 
-46 s · 1080×1920 (9:16) · 30 fps · stereo, −14 LUFS · source: [`src/history/`](../../src/history/), story: [`paper-road.json`](../../src/history/stories/paper-road.json), sound: [`sfx/cues/paper-road.py`](../../sfx/cues/paper-road.py)
+62 s · 1080×1920 (9:16) · 30 fps · Arabic voice-over (Google) · stereo, −14 LUFS · source: [`src/history/`](../../src/history/), story: [`paper-road.json`](../../src/history/stories/paper-road.json), sound: [`sfx/cues/paper-road.py`](../../sfx/cues/paper-road.py)
 
 A 2D animated history short for TikTok/Reels: a faceless cutout narrator tells how paper travelled from the battle of Talas (751) through Samarkand and the Silk Road to Baghdad's first paper mill (~794) and the House of Wisdom, then west across the world.
 
@@ -18,19 +18,19 @@ A 2D animated history short for TikTok/Reels: a faceless cutout narrator tells h
 
 | Scene | Time | Moving parts |
 |---|---|---|
-| Hook: a map on a desk | 0–5.6 s | narrator walks in, raises a sheet into a burst of light; route and coastlines draw on; crossed-swords stamp |
-| Talas, 751 | 5.6–13.4 s | two armies march and clash (camera shake, dust), banners wave, a volley of arrows, river flows |
-| Samarkand workshop | 13.4–21.0 s | one worker pounds pulp, one dips the mould in the vat, sheets swing on the line, new ones drop in |
-| Silk Road | 21.0–28.4 s | 5-layer parallax dunes scroll, camels walk with paper bundles, signpost passes, Baghdad rises on the horizon |
-| Baghdad, ~794 | 28.4–32.2 s | water wheel turns the mill's hammer, a burst of paper flies out, boat sails; dolly through a window |
-| House of Wisdom | 32.2–38.6 s | shelves fill with books, scholars write and read, lamps sway, astrolabe turns |
-| Finale | 38.6–46 s | the route draws west city by city, paper flutters along it, follow call-to-action |
+| Hook: a map on a desk | 0–8.1 s | narrator walks in, raises a sheet into a burst of light; route and coastlines draw on; crossed-swords stamp |
+| Talas, 751 | 8.1–19.6 s | two armies march and clash (camera shake, dust), banners wave, a volley of arrows, river flows |
+| Samarkand workshop | 19.6–29.1 s | one worker pounds pulp, one dips the mould in the vat, sheets swing on the line, new ones drop in |
+| Silk Road | 29.1–38.3 s | 5-layer parallax dunes scroll, camels walk with paper bundles, signpost passes, Baghdad rises on the horizon |
+| Baghdad, ~794 | 38.3–46.0 s | water wheel turns the mill's hammer, a burst of paper flies out, boat sails; dolly through a window |
+| House of Wisdom | 46.0–53.3 s | shelves fill with books, scholars write and read, lamps sway, astrolabe turns |
+| Finale | 53.3–62.4 s | the route draws west city by city, paper flutters along it, follow call-to-action |
 
 The narrator is one rig (`src/history/rig.tsx`) with 11 poses blended by springs, a walk cycle, breathing, a nod on every spoken word and a scarf that lags behind. Soldiers, workers and scholars are the same rig in other costumes.
 
 ## Voice-over
 
-Not included: this environment can't reach a speech service. The track ships with music and sound effects, and every line has a slot: record the 13 lines in [`voiceover.md`](voiceover.md), drop them in `public/paper-road/vo/`, run `npm run paper:build`. Music ducks under the voice automatically.
+`npm run paper:vo` reads every line with Google's Arabic voice (gTTS, needs `translate.google.com` in the environment's allowed hosts), then `scripts/retime.py` stretches the whole timeline to fit the takes: the first cut was 46 s of slots, the voice needed 62 s. Lines with numbers have a `say` field with the number written out in words. For a professional voice, record the 13 lines in [`voiceover.md`](voiceover.md) into `public/paper-road/vo/`, rerun `retime.py`, then `npm run paper:build`. The music ducks under the voice automatically.
 
 ## Process
 

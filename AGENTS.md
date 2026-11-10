@@ -9,6 +9,7 @@ The skills in `.claude/skills/` are the core of this repo. Claude Code and Curso
 - `motion-design/SKILL.md`: easing, springs, timing, type, color, texture, transitions, with numbers.
 - `review-loop/SKILL.md`: how to look at your own renders and what to check. Mandatory before saying a video is done.
 - `sound-design/SKILL.md`: writing a cue sheet for the `sfx` engine, levels, mastering, adding generators.
+- `history-story/SKILL.md`: vertical 9:16 history stories with a faceless cutout narrator, animated backgrounds, Arabic kinetic captions and voice-over slots (`src/history/`).
 - `web-sims/SKILL.md`: simulations and 3D pieces built as one HTML page and captured frame by frame to 60 fps (`sims/`).
 
 ## Making a video
@@ -44,7 +45,7 @@ Mux picture and sound:
 ffmpeg -y -i out/<name>-silent.mp4 -i public/<name>.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k -movflags +faststart -shortest out/<name>.mp4
 ```
 
-The example has shortcuts: `npm run draft`, `npm run sfx`, `npm run build` (sound + render + mux → `out/effort.mp4`), `npm run cover`, `npm run gif`.
+The history example has `npm run paper:draft`, `npm run paper:sfx`, `npm run paper:build` (→ `out/paper-road.mp4`). The effort example has shortcuts: `npm run draft`, `npm run sfx`, `npm run build` (sound + render + mux → `out/effort.mp4`), `npm run cover`, `npm run gif`.
 
 Requirements: Node 20+, Python 3, ffmpeg. If `/usr/bin/chromium` (or `$REMOTION_BROWSER`) exists it's used; otherwise Remotion downloads its own browser on first render.
 
@@ -59,6 +60,8 @@ scripts/wave.mjs         waveform + loudness check
 src/lib.ts               easings and animation helpers, plus the example's palette (C), fonts (F), timeline (TL)
 src/components/          reusable pieces: primitives (Mask, Roll, Spark, Grain, WobbleFilter), Background, useFonts
 src/EffortVideo.tsx      example piece; its scenes in src/scenes/, its timeline in timeline.json
+src/history/             9:16 history series: cutout rig (rig.tsx), captions, paper sweep, scenes/, stories/*.json
+sfx/cues/paper-road.py   its cue sheet (maqam Hijaz, darbuka, voice-over takes from public/paper-road/vo/)
 src/ArticleCover.tsx     example still: a 2000×800 cover drawn from the same timeline
 examples/                gallery: prompt, process and result for each piece
 sims/                    web sims → video: kit/, build.mjs, capture.mjs, beats.py, examples crawlers/ dossier/ engine/

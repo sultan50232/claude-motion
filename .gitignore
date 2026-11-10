@@ -7,3 +7,5 @@ __pycache__/
 .env
 drafts/
 sims/dist/
+public/paper-road.wav
+public/paper-road/vo/*.wav

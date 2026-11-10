@@ -54,6 +54,8 @@ const beats = () => {
     if (key === 'fps' || key === 'duration') return;
     if (typeof v === 'number') out.push(v);
     else if (Array.isArray(v)) v.forEach((x) => walk(x));
+    // an object with a `t` is one event (a caption line, a pose key): only its t is a beat
+    else if (v && typeof v === 'object' && typeof v.t === 'number') out.push(v.t);
     else if (v && typeof v === 'object') Object.entries(v).forEach(([k, x]) => walk(x, k));
   };
   walk(tl);

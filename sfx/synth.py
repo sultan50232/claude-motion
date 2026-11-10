@@ -191,3 +191,86 @@ def pad(duration, chords, volume=None, detune=0.6, tremolo=0.23, xfade=0.35):
             left[i] += sl * v
             right[i] += sr * v
     return left, right
+
+
+def pluck(freq, dur=1.2, bright=0.5):
+    """Plucked string (oud-like, Karplus-Strong): melody notes, a phrase under a reveal. Keep freq in the maqam."""
+    n = int(dur * SR)
+    period = max(2, int(SR / freq))
+    buf = [random.uniform(-1, 1) for _ in range(period)]
+    lp = 0.0
+    for i in range(period):
+        lp += bright * (buf[i] - lp)
+        buf[i] = lp
+    out = []
+    damp = 0.5 - 0.004 * (1 - bright)
+    for k in range(n):
+        i = k % period
+        nxt = buf[(k + 1) % period]
+        s = buf[i]
+        buf[i] = damp * (s + nxt) * 0.996
+        out.append(s * min(1.0, (n - k) / (0.05 * SR)))
+    return out
+
+
+def doum(freq=70, dur=0.6):
+    """Low hand-drum stroke (darbuka/tabl 'doum'): rhythm, a heavy step, a stamp landing."""
+    n = int(dur * SR)
+    out = []
+    ph = 0.0
+    for k in range(n):
+        tt = k / SR
+        ph += 2 * math.pi * (freq * (1 + 0.6 * math.exp(-tt / 0.03))) / SR
+        s = math.sin(ph) * math.exp(-tt / 0.16)
+        s += random.uniform(-1, 1) * math.exp(-tt / 0.004) * 0.35
+        out.append(math.tanh(1.4 * s))
+    return out
+
+
+def tek(dur=0.12):
+    """High drum slap (darbuka 'tek'): off-beats, footsteps on stone, small ticks."""
+    n = int(dur * SR)
+    noise = bandnoise(n, lambda k: 3200, q=0.6)
+    return [
+        noise[k] * math.exp(-k / (0.012 * SR)) * 2.0
+        + math.sin(2 * math.pi * 620 * k / SR) * math.exp(-k / (0.02 * SR)) * 0.4
+        for k in range(n)
+    ]
+
+
+def rustle(dur):
+    """Paper rustle: a sheet flying past, pages, a paper-sweep transition."""
+    n = int(dur * SR)
+    noise = bandnoise(n, lambda k: 2600 + 1800 * math.sin(k / SR * 31), q=0.4)
+    out = []
+    g = 0.0
+    for k in range(n):
+        if random.random() < 0.002:
+            g = random.uniform(0.4, 1.0)
+        g *= 0.9993
+        env = math.sin(math.pi * k / n) ** 0.7
+        out.append(noise[k] * (0.35 + g) * env * 1.6)
+    return out
+
+
+def clash(dur=0.9):
+    """Metal clash (swords, a bell struck hard): inharmonic partials ringing out."""
+    n = int(dur * SR)
+    parts = [(1130, 1.0, 0.18), (1720, 0.7, 0.12), (2590, 0.5, 0.09), (3410, 0.35, 0.06), (4870, 0.25, 0.04)]
+    out = []
+    for k in range(n):
+        tt = k / SR
+        s = sum(a * math.sin(2 * math.pi * f * tt) * math.exp(-tt / tau) for f, a, tau in parts)
+        s += random.uniform(-1, 1) * math.exp(-tt / 0.006)
+        out.append(s * 0.5)
+    return out
+
+
+def wind(dur, fc=500):
+    """Desert wind / river ambience: a slow-breathing band of noise under a whole scene."""
+    n = int(dur * SR)
+    noise = bandnoise(n, lambda k: fc * (1 + 0.35 * math.sin(k / SR * 0.9)), q=0.5)
+    return [
+        noise[k] * (0.6 + 0.4 * math.sin(k / SR * 0.7 + 1)) * min(1, k / (0.6 * SR), (n - k) / (0.6 * SR))
+        for k in range(n)
+    ]

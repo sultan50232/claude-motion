@@ -7,3 +7,5 @@ __pycache__/
 .env
 drafts/
 sims/dist/
+sims/tolerance/fonts.gen.js
+sims/tolerance/mix.wav

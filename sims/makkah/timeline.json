@@ -1,0 +1,93 @@
+{
+ "duration": 60,
+ "xfade": 1.0,
+ "scenes": [
+  {
+   "kind": "intro",
+   "start": 0,
+   "end": 5
+  },
+  {
+   "kind": "greet",
+   "start": 5,
+   "end": 10
+  },
+  {
+   "kind": "dignity",
+   "start": 10,
+   "end": 15
+  },
+  {
+   "kind": "justice",
+   "start": 15,
+   "end": 20
+  },
+  {
+   "kind": "tolerance",
+   "start": 20,
+   "end": 25
+  },
+  {
+   "kind": "dialogue",
+   "start": 25,
+   "end": 30
+  },
+  {
+   "kind": "coop",
+   "start": 30,
+   "end": 35
+  },
+  {
+   "kind": "diversity",
+   "start": 35,
+   "end": 40
+  },
+  {
+   "kind": "together",
+   "start": 40,
+   "end": 45
+  },
+  {
+   "kind": "city",
+   "start": 45,
+   "end": 50
+  },
+  {
+   "kind": "finale",
+   "start": 50,
+   "end": 55
+  },
+  {
+   "kind": "flag",
+   "start": 55,
+   "end": 60
+  }
+ ],
+ "titles": [
+  {
+   "lines": [
+    "وثيقة مكة المكرمة",
+    "قيم إنسانية تجمعنا"
+   ],
+   "style": "hero",
+   "start": 0.5,
+   "end": 4.5
+  },
+  {
+   "lines": [
+    "العدل والرحمة"
+   ],
+   "start": 15.5,
+   "end": 19.5
+  },
+  {
+   "lines": [
+    "من مكة المكرمة انطلقت رسالة إنسانية",
+    "وبقيم التسامح والتعاون نبني مستقبلنا"
+   ],
+   "style": "closing",
+   "start": 55.5,
+   "end": 60
+  }
+ ]
+}
